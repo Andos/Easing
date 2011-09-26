@@ -1,0 +1,415 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "..\..\Inc\ccx.h"
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+DB_EASING DIALOG DISCARDABLE  0, 0, 139, 209
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Easing options"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,45,188,50,14
+    COMBOBOX        IDC_EASINGMODE,69,130,63,30,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Easing mode:",IDC_STATIC,7,132,44,8
+    LTEXT           "First function:",IDC_STATIC,7,151,43,8
+    LTEXT           "Second function:",IDC_STATIC,7,167,55,8
+    COMBOBOX        IDC_FIRSTFUNCTION,69,148,63,30,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_SECONDFUNCTION,69,167,63,30,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_EASINGDISPLAY,"Static",SS_ETCHEDFRAME,7,7,125,118
+END
+
+DB_TIMEMODE DIALOG DISCARDABLE  0, 0, 96, 74
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Time mode"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,22,53,50,14
+    CONTROL         "Milliseconds",IDC_RADIO_MILLISECONDS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,21,54,10
+    CONTROL         "Event loops",IDC_RADIO_EVENTLOOPS,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,7,36,53,10
+    LTEXT           "Select a timespan mode",IDC_STATIC,7,7,76,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    DB_EASING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 132
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 202
+    END
+
+    DB_TIMEMODE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 89
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+1 VERSIONINFO
+ FILEVERSION 1,0,0,0
+ PRODUCTVERSION 1,0,0,0
+ FILEFLAGSMASK 0x0L
+#ifdef _DEBUG
+ FILEFLAGS 0x21L
+#else
+ FILEFLAGS 0x20L
+#endif
+ FILEOS 0x10001L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "Anders Riggelsen\0"
+            VALUE "FileDescription", "Easing Object\0"
+            VALUE "FileVersion", "2.00\0"
+            VALUE "InternalName", "Easing\0"
+            VALUE "LegalCopyright", "Copyright © 2010 Anders Riggelsen\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "Easing.mfx\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "\0"
+            VALUE "ProductVersion", "1, 0, 0, 0\0"
+            VALUE "SpecialBuild", "00000001\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Data
+//
+
+KPX_MAGICNUMBER RCDATA MOVEABLE PURE 
+BEGIN
+    0x2516, 0x5908
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+#if defined(APSTUDIO_INVOKED) || defined(EDITOR)
+#if defined(APSTUDIO_INVOKED)
+EXO_ICON$(EDITOR)       BITMAP  MOVEABLE PURE   "EXTICON.BMP"
+#else
+EXO_ICON                BITMAP  MOVEABLE PURE   "EXTICON.BMP"
+#endif
+#endif
+#if defined(APSTUDIO_INVOKED) || defined(EDITOR)
+#if defined(APSTUDIO_INVOKED)
+EXO_IMAGE$(EDITOR)      BITMAP  MOVEABLE PURE   "EXTICON.BMP"
+#else
+EXO_IMAGE               BITMAP  MOVEABLE PURE   "EXTICON.BMP"
+#endif
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+#if defined(APSTUDIO_INVOKED) || defined(EDITOR)
+#if defined(APSTUDIO_INVOKED)
+MN_CONDITIONS$(EDITOR) MENU DISCARDABLE 
+#else
+MN_CONDITIONS MENU DISCARDABLE 
+#endif
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "Any object stopped moving",   ID_ANYOBJECTSTOPPED
+        MENUITEM "Specific object stopped moving", ID_SPECIFICOBJECTSTOPPED
+        MENUITEM "Is object moving?",           ID_ISOBJECTMOVING
+    END
+END
+#endif
+
+#if defined(APSTUDIO_INVOKED) || defined(EDITOR)
+#if defined(APSTUDIO_INVOKED)
+MN_ACTIONS$(EDITOR) MENU DISCARDABLE 
+#else
+MN_ACTIONS MENU DISCARDABLE 
+#endif
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "Move object",                 ID_MOVEOBJ
+        MENUITEM "Stop object",                 ID_STOPOBJECT
+        MENUITEM "Stop all objects",            ID_STOPALLOBJECTS
+        MENUITEM "Reverse object",              ID_REVERSEOBJECT
+        MENUITEM SEPARATOR
+        POPUP "Default parameters"
+        BEGIN
+            MENUITEM "Set default amplitude",       ID_SETAMPLITUDE
+            MENUITEM "Set default overshoot",       ID_SETOVERSHOOT
+            MENUITEM "Set default period",          ID_SETPERIOD
+        END
+        POPUP "Object parameters"
+        BEGIN
+            MENUITEM "Set amplitude of object",     ID_SETOBJECTAMPLITUDE
+            MENUITEM "Set overshoot of object",     ID_SETOBJECTOVERSHOOT
+            MENUITEM "Set period of object",        ID_SETOBJECTPERIOD
+        END
+        MENUITEM SEPARATOR
+    END
+END
+#endif
+
+#if defined(APSTUDIO_INVOKED) || defined(EDITOR)
+#if defined(APSTUDIO_INVOKED)
+MN_EXPRESSIONS$(EDITOR) MENU DISCARDABLE 
+#else
+MN_EXPRESSIONS MENU DISCARDABLE 
+#endif
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "Get number of controlled objects", ID_GETNUMCONTROLLED
+        MENUITEM "Get fixed value of recently stopped object", 
+                                                ID_GETSTOPPEDFIXED
+        MENUITEM "Get progress of object",      ID_GETPROGRESS, GRAYED
+        MENUITEM SEPARATOR
+        POPUP "Easing value [0..1]"
+        BEGIN
+            MENUITEM "Ease-In (function, step)",    ID_CALCULATE_EASEIN
+            MENUITEM "Ease-Out (function, step)",   ID_CALCULATE_EASEOUT
+            MENUITEM "Ease-InOut (functionA, functionB, step)", 
+                                                    ID_CALCULATE_EASEINOUT
+            MENUITEM "Ease-OutIn (functionA, functionB, step)", 
+                                                    ID_CALCULATE_EASEOUTIN
+        END
+        POPUP "Between two values"
+        BEGIN
+            MENUITEM "Ease-In (valueA, valueB, function, step)", 
+                                                    ID_CALCULATEBETWEEN_EASEIN
+
+            MENUITEM "Ease-Out (valueA, valueB, function, step)", 
+                                                    ID_CALCULATEBETWEEN_EASEOUT
+
+            MENUITEM "Ease-InOut (valueA, valueB, functionA, functionB, step)", 
+                                                    ID_CALCULATEBETWEEN_EASEINOUT
+
+            MENUITEM "Ease-OutIn (valueA, valueB, functionA, functionB, step)", 
+                                                    ID_CALCULATEBETWEEN_EASEOUTIN
+
+        END
+        MENUITEM SEPARATOR
+        POPUP "Default parameters"
+        BEGIN
+            MENUITEM "Get default amplitude",       ID_GETDEFAULTAMPLITUDE
+            MENUITEM "Get default overshoot",       ID_GETDEFAULTOVERSHOOT
+            MENUITEM "Get default period",          ID_GETDEFAULTPERIOD
+        END
+        POPUP "Parameters of object"
+        BEGIN
+            MENUITEM "Get amplitude of object",     ID_GETAMPLITUDE
+            MENUITEM "Get overshoot of object",     ID_GETOVERSHOOT
+            MENUITEM "Get period of object",        ID_GETPERIOD
+        END
+        MENUITEM SEPARATOR
+    END
+END
+#endif
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""..\\..\\Inc\\ccx.h""\r\n"
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    KPX_MARK                "MF2"
+    KPX_NAME                "Easing Object"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDST_OBJNAME            "Easing Object"
+    IDST_AUTHOR             "Anders Riggelsen"
+    IDST_COPYRIGHT          "Copyright © 2010 Anders Riggelsen"
+    IDST_COMMENT            "Helps you to smoothly move objects from one position to another using mathematical functions. Supports Ease-In, Ease-Out, Ease-In-Out and Ease-Out-In."
+    IDST_HTTP               "http://www.andersriggelsen.dk"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MOVEOBJ             "Move %0 using %1 to [%2,%3] over %5 %4"
+    IDS_STOPOBJECT          "Stop %0"
+    IDS_STOPALLOBJECTS      "Stop all objects"
+    IDS_ANYOBJECTSTOPPED    "%o: Any object stopped moving"
+    IDS_SPECIFICOBJECTSTOPPED "%o: Object stopped moving: %0"
+    IDS_GETNUMCONTROLLED    "GetNumControlled("
+    IDS_CALCULATEEASINGVALUE "CalculateEasingValue("
+    IDS_GETSTOPPEDFIXED     "GetStoppedFixed("
+    IDS_CALCULATE_EASEIN    "EaseIn("
+    IDS_CALCULATE_EASEOUT   "EaseOut("
+    IDS_CALCULATE_EASEINOUT "EaseInOut("
+    IDS_CALCULATE_EASEOUTIN "EaseOutIn("
+    IDS_CALCULATEBETWEEN_EASEIN "EaseInBetween("
+    IDS_CALCULATEBETWEEN_EASEOUT "EaseOutBetween("
+    IDS_CALCULATEBETWEEN_EASEINOUT "EaseInOutBetween("
+    IDS_CALCULATEBETWEEN_EASEOUTIN "EaseOutInBetween("
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SELECTOBJECTTOMOVE  "Select object to move"
+    IDS_SELECTOBJECTTOSTOP  "Select object to stop"
+    IDS_SELECTOBJECTTOTEST  "Select object to test"
+    IDS_EVENTLOOPS          "Enter number of event loops"
+    IDS_MILLISECONDS        "Enter milliseconds (1000 ms = 1 second)"
+    IDS_XCOORDINATE         "Enter target X coordinate"
+    IDS_YCOORDINATE         "Enter target Y coordinate"
+    IDS_FUNCTION            "function"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FUNCTIONA           "function A"
+    IDS_FUNCTIONB           "function B"
+    IDS_STEP                "step"
+    IDS_VALUEA              "value A"
+    IDS_VALUEB              "value B"
+    IDS_TIME                "Time"
+    IDS_SETAMPLITUDE_VAL    "Set amplitude value (Default = 1.0)"
+    IDS_SETOVERSHOOT_VAL    "Set overshoot value (Default = 1.5)"
+    IDS_SETPERIOD_VAL       "Set period value (Default = 0.4)"
+    IDS_FIXED_VAL           "fixed value"
+    IDS_SELECTOBJECT        "Select obejct"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_REVERSEOBJECT       "Reverse movement of %0"
+    IDS_PROP_OVERSHOOT      "Overshoot"
+    IDS_PROPINFO_OVERSHOOT  "How far the object will overshoot the target in 'Back'. Default is 1.5"
+    IDS_PROP_AMPLITUDE      "Amplitude"
+    IDS_PROPINFO_AMPLITUDE  "The swing amplitude in the 'Elastic' and 'Bounce' effect. Default is 1.0"
+    IDS_PROP_PERIOD         "Period"
+    IDS_PROPINFO_PERIOD     "The amount of swings in the 'Elastic' effect. Default is 0.4"
+    IDS_SETAMPLITUDE        "Set default amplitude = %0"
+    IDS_SETOVERSHOOT        "Set default overshoot = %0"
+    IDS_SETPERIOD           "Set default period = %0"
+    IDS_GETAMPLITUDE        "GetObjectAmplitude("
+    IDS_GETOVERSHOOT        "GetObjectOvershoot("
+    IDS_GETPERIOD           "GetObjectPeriod("
+    IDS_GETDEFAULTAMPLITUDE "GetDefaultAmplitude("
+    IDS_GETDEFAULTOVERSHOOT "GetDefaultOvershoot("
+    IDS_GETDEFAULTPERIOD    "GetDefaultPeriod("
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SETOBJECTAMPLITUDE  "Set amplitude of %0 to %1"
+    IDS_SETOBJECTOVERSHOOT  "Set overshoot of %0 to %1"
+    IDS_SETOBJECTPERIOD     "Set period of %0 to %1"
+    IDS_ISOBJECTMOVING      "%o: If %0 is moving"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
