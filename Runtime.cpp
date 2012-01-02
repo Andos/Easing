@@ -156,7 +156,6 @@ short WINAPI DLLExport HandleRunObject(LPRDATA rdPtr)
 			rdPtr->controlled.erase( rdPtr->controlled.begin() + i );
 			i--;
 		}
-
 	}
 
 	//Trigger the 'Object stopped moving' events

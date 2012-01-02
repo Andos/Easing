@@ -1,0 +1,17 @@
+*.dsw
+*.aps
+*.mfa
+*.ncb
+*.user
+*.html
+*.htm
+*.exp
+*.lib
+*.mfx
+*.manifest
+*.res
+*.pdb
+*.obj
+*.dep
+*.idb
+*.suo

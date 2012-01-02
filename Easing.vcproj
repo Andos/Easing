@@ -358,7 +358,7 @@
 				ProgramDataBaseFileName=".\Debug/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				DebugInformationFormat="4"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -377,7 +377,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib ..\..\lib\mmfs2.lib"
 				OutputFile=".\Debug/Easing.mfx"
-				LinkIncremental="2"
+				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\Ext.def"
 				GenerateDebugInformation="true"
@@ -410,6 +410,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="copy $(TargetDir)$(TargetFileName) &quot;C:\Program Files (x86)\Multimedia Fusion Developer 2\Data\Runtime\&quot;&#x0D;&#x0A;copy $(TargetDir)$(TargetFileName) &quot;C:\Program Files (x86)\Multimedia Fusion Developer 2\Extensions\&quot;"
 			/>
 		</Configuration>
 		<Configuration

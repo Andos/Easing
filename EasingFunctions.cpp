@@ -20,13 +20,19 @@ double bounce(double step, EaseVars vars)
 {
 	step = 1-step;
 	if (step < (8/22.0))
-		return 1 - 7.5625*pow(step,2.0);
-	else if (step < (16/22.0))
-		return 1 - vars.amplitude * (7.5625*pow(step-(12/22.0), 2.0) + 0.75);
-	else if (step < (20/22.0))
-		return 1 - vars.amplitude * (7.5625*pow(step-(18/22.0), 2.0) + 0.9375);
-	else
-		return 1 - vars.amplitude * (7.5625*pow(step-(21/22.0), 2.0) + 0.984375);
+		return 1 - 7.5625*step*step;
+	else if (step < (16/22.0)){
+		step -= 12/22.0;
+		return 1 - vars.amplitude*(7.5625*step*step + 0.75) - (1-vars.amplitude);
+	}
+	else if (step < (20/22.0)){
+		step -= 18/22.0;
+		return 1 - vars.amplitude*(7.5625*step*step + 0.9375) - (1-vars.amplitude);
+	}
+	else{
+		step -= 21/22.0;
+		return 1 - vars.amplitude*(7.5625*step*step + 0.984375) - (1-vars.amplitude);
+	}
 }
 
 double doFunction(int number, double step, EaseVars vars)
