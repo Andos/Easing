@@ -29,8 +29,9 @@ using namespace std;
 #define ACT_SETOBJECTAMPLITUDE          7
 #define ACT_SETOBJECTOVERSHOOT          8
 #define ACT_SETOBJECTPERIOD             9
+#define ACT_MOVEOBJEXPLICIT				10
 
-#define	ACT_LAST						10
+#define	ACT_LAST						11
 
 // -------------------------------
 // DEFINITION OF EXPRESSIONS CODES

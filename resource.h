@@ -1,5 +1,5 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Developer Studio generated include file.
+// Microsoft Visual C++ generated include file.
 // Used by Ext.rc
 //
 #define DB_EASING                       101
@@ -73,6 +73,17 @@
 #define IDS_SETOBJECTOVERSHOOT          6033
 #define IDS_SETOBJECTPERIOD             6034
 #define IDS_ISOBJECTMOVING              6035
+
+#define IDS_FIXEDOFOBJTOMOVE            6036
+#define IDS_EASINGMODENUMBER			6037
+#define IDS_FUNCTIONANUMBER				6038
+#define IDS_FUNCTIONBNUMBER				6039
+#define IDS_TIMEMODENUMBER				6040
+
+#define IDS_MOVEOBJEXPLICIT				6041
+
+
+
 #define MN_ACTIONS                      20000
 #define MN_CONDITIONS                   20001
 #define MN_EXPRESSIONS                  20002
@@ -88,6 +99,8 @@
 #define ID_SETOBJECTAMPLITUDE           25070
 #define ID_SETOBJECTOVERSHOOT           25080
 #define ID_SETOBJECTPERIOD              25090
+#define ID_MOVEOBJEXPLICIT              25100
+
 
 #define ID_ANYOBJECTSTOPPED             26000
 #define ID_SPECIFICOBJECTSTOPPED        26010
@@ -118,7 +131,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        103
-#define _APS_NEXT_COMMAND_VALUE         40030
+#define _APS_NEXT_COMMAND_VALUE         40031
 #define _APS_NEXT_CONTROL_VALUE         1011
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -29,34 +29,29 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // Dialog
 //
 
-DB_EASING DIALOG DISCARDABLE  0, 0, 139, 209
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+DB_EASING DIALOG  0, 0, 139, 209
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Easing options"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,45,188,50,14
-    COMBOBOX        IDC_EASINGMODE,69,130,63,30,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_EASINGMODE,69,130,63,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Easing mode:",IDC_STATIC,7,132,44,8
     LTEXT           "First function:",IDC_STATIC,7,151,43,8
     LTEXT           "Second function:",IDC_STATIC,7,167,55,8
-    COMBOBOX        IDC_FIRSTFUNCTION,69,148,63,30,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_SECONDFUNCTION,69,167,63,30,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_FIRSTFUNCTION,69,148,63,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_SECONDFUNCTION,69,167,63,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "",IDC_EASINGDISPLAY,"Static",SS_ETCHEDFRAME,7,7,125,118
 END
 
-DB_TIMEMODE DIALOG DISCARDABLE  0, 0, 96, 74
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+DB_TIMEMODE DIALOG  0, 0, 96, 74
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Time mode"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,22,53,50,14
-    CONTROL         "Milliseconds",IDC_RADIO_MILLISECONDS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,21,54,10
-    CONTROL         "Event loops",IDC_RADIO_EVENTLOOPS,"Button",
-                    BS_AUTORADIOBUTTON | WS_TABSTOP,7,36,53,10
+    CONTROL         "Milliseconds",IDC_RADIO_MILLISECONDS,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,21,54,10
+    CONTROL         "Event loops",IDC_RADIO_EVENTLOOPS,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,7,36,53,10
     LTEXT           "Select a timespan mode",IDC_STATIC,7,7,76,8
 END
 
@@ -67,7 +62,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+GUIDELINES DESIGNINFO 
 BEGIN
     DB_EASING, DIALOG
     BEGIN
@@ -88,7 +83,6 @@ END
 #endif    // APSTUDIO_INVOKED
 
 
-#ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
 // Version
@@ -111,18 +105,14 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "Comments", "\0"
-            VALUE "CompanyName", "Anders Riggelsen\0"
-            VALUE "FileDescription", "Easing Object\0"
-            VALUE "FileVersion", "2.00\0"
-            VALUE "InternalName", "Easing\0"
-            VALUE "LegalCopyright", "Copyright © 2010 Anders Riggelsen\0"
-            VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "Easing.mfx\0"
-            VALUE "PrivateBuild", "\0"
-            VALUE "ProductName", "\0"
-            VALUE "ProductVersion", "1, 0, 0, 0\0"
-            VALUE "SpecialBuild", "00000001\0"
+            VALUE "CompanyName", "Anders Riggelsen"
+            VALUE "FileDescription", "Easing Object"
+            VALUE "FileVersion", "2.00"
+            VALUE "InternalName", "Easing"
+            VALUE "LegalCopyright", "Copyright © 2010 Anders Riggelsen"
+            VALUE "OriginalFilename", "Easing.mfx"
+            VALUE "ProductVersion", "1, 0, 0, 0"
+            VALUE "SpecialBuild", "00000001"
         END
     END
     BLOCK "VarFileInfo"
@@ -131,15 +121,13 @@ BEGIN
     END
 END
 
-#endif    // !_MAC
-
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Data
+// RCDATA
 //
 
-KPX_MAGICNUMBER RCDATA MOVEABLE PURE 
+KPX_MAGICNUMBER RCDATA 
 BEGIN
     0x2516, 0x5908
 END
@@ -152,16 +140,16 @@ END
 
 #if defined(APSTUDIO_INVOKED) || defined(EDITOR)
 #if defined(APSTUDIO_INVOKED)
-EXO_ICON$(EDITOR)       BITMAP  MOVEABLE PURE   "EXTICON.BMP"
+EXO_ICON$(EDITOR)       BITMAP                  "EXTICON.BMP"
 #else
-EXO_ICON                BITMAP  MOVEABLE PURE   "EXTICON.BMP"
+EXO_ICON                BITMAP                  "EXTICON.BMP"
 #endif
 #endif
 #if defined(APSTUDIO_INVOKED) || defined(EDITOR)
 #if defined(APSTUDIO_INVOKED)
-EXO_IMAGE$(EDITOR)      BITMAP  MOVEABLE PURE   "EXTICON.BMP"
+EXO_IMAGE$(EDITOR)      BITMAP                  "EXTICON.BMP"
 #else
-EXO_IMAGE               BITMAP  MOVEABLE PURE   "EXTICON.BMP"
+EXO_IMAGE               BITMAP                  "EXTICON.BMP"
 #endif
 #endif
 
@@ -172,15 +160,15 @@ EXO_IMAGE               BITMAP  MOVEABLE PURE   "EXTICON.BMP"
 
 #if defined(APSTUDIO_INVOKED) || defined(EDITOR)
 #if defined(APSTUDIO_INVOKED)
-MN_CONDITIONS$(EDITOR) MENU DISCARDABLE 
+MN_CONDITIONS$(EDITOR) MENU 
 #else
-MN_CONDITIONS MENU DISCARDABLE 
+MN_CONDITIONS MENU 
 #endif
 BEGIN
     POPUP ""
     BEGIN
-        MENUITEM "Any object stopped moving",   ID_ANYOBJECTSTOPPED
-        MENUITEM "Specific object stopped moving", ID_SPECIFICOBJECTSTOPPED
+        MENUITEM "Object stopped moving?",      ID_SPECIFICOBJECTSTOPPED
+        MENUITEM "Any object stopped moving?",  ID_ANYOBJECTSTOPPED
         MENUITEM "Is object moving?",           ID_ISOBJECTMOVING
     END
 END
@@ -188,14 +176,15 @@ END
 
 #if defined(APSTUDIO_INVOKED) || defined(EDITOR)
 #if defined(APSTUDIO_INVOKED)
-MN_ACTIONS$(EDITOR) MENU DISCARDABLE 
+MN_ACTIONS$(EDITOR) MENU 
 #else
-MN_ACTIONS MENU DISCARDABLE 
+MN_ACTIONS MENU 
 #endif
 BEGIN
     POPUP ""
     BEGIN
         MENUITEM "Move object",                 ID_MOVEOBJ
+        MENUITEM "Move object (nummeric parameters)", ID_MOVEOBJEXPLICIT
         MENUITEM "Stop object",                 ID_STOPOBJECT
         MENUITEM "Stop all objects",            ID_STOPALLOBJECTS
         MENUITEM "Reverse object",              ID_REVERSEOBJECT
@@ -219,41 +208,29 @@ END
 
 #if defined(APSTUDIO_INVOKED) || defined(EDITOR)
 #if defined(APSTUDIO_INVOKED)
-MN_EXPRESSIONS$(EDITOR) MENU DISCARDABLE 
+MN_EXPRESSIONS$(EDITOR) MENU 
 #else
-MN_EXPRESSIONS MENU DISCARDABLE 
+MN_EXPRESSIONS MENU 
 #endif
 BEGIN
     POPUP ""
     BEGIN
         MENUITEM "Get number of controlled objects", ID_GETNUMCONTROLLED
-        MENUITEM "Get fixed value of recently stopped object", 
-                                                ID_GETSTOPPEDFIXED
-        MENUITEM "Get progress of object",      ID_GETPROGRESS, GRAYED
+        MENUITEM "Get fixed value of recently stopped object", ID_GETSTOPPEDFIXED
         MENUITEM SEPARATOR
         POPUP "Easing value [0..1]"
         BEGIN
             MENUITEM "Ease-In (function, step)",    ID_CALCULATE_EASEIN
             MENUITEM "Ease-Out (function, step)",   ID_CALCULATE_EASEOUT
-            MENUITEM "Ease-InOut (functionA, functionB, step)", 
-                                                    ID_CALCULATE_EASEINOUT
-            MENUITEM "Ease-OutIn (functionA, functionB, step)", 
-                                                    ID_CALCULATE_EASEOUTIN
+            MENUITEM "Ease-InOut (functionA, functionB, step)", ID_CALCULATE_EASEINOUT
+            MENUITEM "Ease-OutIn (functionA, functionB, step)", ID_CALCULATE_EASEOUTIN
         END
         POPUP "Between two values"
         BEGIN
-            MENUITEM "Ease-In (valueA, valueB, function, step)", 
-                                                    ID_CALCULATEBETWEEN_EASEIN
-
-            MENUITEM "Ease-Out (valueA, valueB, function, step)", 
-                                                    ID_CALCULATEBETWEEN_EASEOUT
-
-            MENUITEM "Ease-InOut (valueA, valueB, functionA, functionB, step)", 
-                                                    ID_CALCULATEBETWEEN_EASEINOUT
-
-            MENUITEM "Ease-OutIn (valueA, valueB, functionA, functionB, step)", 
-                                                    ID_CALCULATEBETWEEN_EASEOUTIN
-
+            MENUITEM "Ease-In (valueA, valueB, function, step)", ID_CALCULATEBETWEEN_EASEIN
+            MENUITEM "Ease-Out (valueA, valueB, function, step)", ID_CALCULATEBETWEEN_EASEOUT
+            MENUITEM "Ease-InOut (valueA, valueB, functionA, functionB, step)", ID_CALCULATEBETWEEN_EASEINOUT
+            MENUITEM "Ease-OutIn (valueA, valueB, functionA, functionB, step)", ID_CALCULATEBETWEEN_EASEOUTIN
         END
         MENUITEM SEPARATOR
         POPUP "Default parameters"
@@ -280,12 +257,12 @@ END
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""..\\..\\Inc\\ccx.h""\r\n"
     "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
@@ -294,7 +271,7 @@ BEGIN
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
     "\r\n"
     "\0"
@@ -308,13 +285,13 @@ END
 // String Table
 //
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     KPX_MARK                "MF2"
     KPX_NAME                "Easing Object"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDST_OBJNAME            "Easing Object"
     IDST_AUTHOR             "Anders Riggelsen"
@@ -323,7 +300,7 @@ BEGIN
     IDST_HTTP               "http://www.andersriggelsen.dk"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_MOVEOBJ             "Move %0 using %1 to [%2,%3] over %5 %4"
     IDS_STOPOBJECT          "Stop %0"
@@ -343,7 +320,7 @@ BEGIN
     IDS_CALCULATEBETWEEN_EASEOUTIN "EaseOutInBetween("
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_SELECTOBJECTTOMOVE  "Select object to move"
     IDS_SELECTOBJECTTOSTOP  "Select object to stop"
@@ -355,7 +332,7 @@ BEGIN
     IDS_FUNCTION            "function"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_FUNCTIONA           "function A"
     IDS_FUNCTIONB           "function B"
@@ -370,7 +347,7 @@ BEGIN
     IDS_SELECTOBJECT        "Select obejct"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_REVERSEOBJECT       "Reverse movement of %0"
     IDS_PROP_OVERSHOOT      "Overshoot"
@@ -390,12 +367,18 @@ BEGIN
     IDS_GETDEFAULTPERIOD    "GetDefaultPeriod("
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_SETOBJECTAMPLITUDE  "Set amplitude of %0 to %1"
     IDS_SETOBJECTOVERSHOOT  "Set overshoot of %0 to %1"
     IDS_SETOBJECTPERIOD     "Set period of %0 to %1"
     IDS_ISOBJECTMOVING      "%o: If %0 is moving"
+    IDS_FIXEDOFOBJTOMOVE    "Fixed value of the object to move"
+    IDS_EASINGMODENUMBER    "Easing mode (0=In, 1=Out, 2=InOut, 3=OutIn)"
+    IDS_FUNCTIONANUMBER     "First function: (0=Linear, 1=quadratic, 2=cubic, 3=quint, 4=sine, ... )"
+    IDS_FUNCTIONBNUMBER     "Second function: (0=Linear, 1=quadratic, 2=cubic, 3=quint, 4=sine, ... )"
+    IDS_TIMEMODENUMBER      "Time mode (0=milliseconds, 1=event loops)"
+    IDS_MOVEOBJEXPLICIT     "Move %0 using mode=%1 functionA=%2 functionB=%3 to [%4,%5] using time-mode %6 over %7 time units"
 END
 
 #endif    // English (U.S.) resources

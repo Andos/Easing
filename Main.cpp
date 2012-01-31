@@ -42,6 +42,8 @@ short actionsInfos[]=
 		ID_SETOBJECTAMPLITUDE,	IDS_SETOBJECTAMPLITUDE,		ACT_SETOBJECTAMPLITUDE,		0, 2, PARAM_OBJECT,PARAM_EXPRESSION,	IDS_SELECTOBJECT, IDS_SETAMPLITUDE_VAL,
 		ID_SETOBJECTOVERSHOOT,	IDS_SETOBJECTOVERSHOOT,		ACT_SETOBJECTOVERSHOOT,		0, 2, PARAM_OBJECT,PARAM_EXPRESSION,	IDS_SELECTOBJECT, IDS_SETOVERSHOOT_VAL,
 		ID_SETOBJECTPERIOD,		IDS_SETOBJECTPERIOD,		ACT_SETOBJECTPERIOD,		0, 2, PARAM_OBJECT,PARAM_EXPRESSION,	IDS_SELECTOBJECT, IDS_SETPERIOD_VAL,
+
+		ID_MOVEOBJEXPLICIT,		IDS_MOVEOBJEXPLICIT,		ACT_MOVEOBJEXPLICIT,		0, 8, PARAM_EXPRESSION,PARAM_EXPRESSION,PARAM_EXPRESSION,PARAM_EXPRESSION,PARAM_EXPRESSION,PARAM_EXPRESSION,PARAM_EXPRESSION,PARAM_EXPRESSION,		IDS_FIXEDOFOBJTOMOVE, IDS_EASINGMODENUMBER, IDS_FUNCTIONANUMBER, IDS_FUNCTIONBNUMBER, IDS_XCOORDINATE, IDS_YCOORDINATE, IDS_TIMEMODENUMBER, IDS_TIME, 
 	};
 
 // Definitions of parameters for each expression
@@ -68,11 +70,6 @@ short expressionsInfos[]=
 		ID_GETDEFAULTOVERSHOOT,			IDS_GETDEFAULTOVERSHOOT,		EXP_GETDEFAULTOVERSHOOT,		0, 0,
 		ID_GETDEFAULTPERIOD,			IDS_GETDEFAULTPERIOD,			EXP_GETDEFAULTPERIOD,			0, 0,
 	};
-
-#define EXP_GETAMPLITUDE                10
-#define EXP_GETOVERSHOOT                11
-#define EXP_GETPERIOD                   12
-
 
 _inline float GetFloatParamEx(LPRDATA rdPtr)
 {
@@ -176,7 +173,6 @@ short WINAPI DLLExport act_MoveObj(LPRDATA rdPtr, long param1, long param2)
 			break;
 		}
 	}
-	
 	MoveStruct move;
 	move.startX = object->roHo.hoX;
 	move.startY = object->roHo.hoY;
@@ -184,24 +180,65 @@ short WINAPI DLLExport act_MoveObj(LPRDATA rdPtr, long param1, long param2)
 	move.destX = x;
 	move.destY = y;
 	move.starttime = 0;
-
 	move.easingMode = easing->method;
 	move.functionA = easing->firstFunction;
 	move.functionB = easing->secondFunction;
-
 	move.timeMode = time->type;
 	move.timespan = timespan;
 	move.eventloop_step = 0;
 	
-	if(move.timeMode == 0)
-	{
+	if(move.timeMode == 0){
 		move.starttime = CurrentTime();
 	}
-
 	move.vars = rdPtr->easingVars;
-
 	rdPtr->controlled.push_back(move);
+	return 0;
+}
 
+short WINAPI DLLExport act_MoveObjExplicit(LPRDATA rdPtr, long param1, long param2)
+{
+	int fixed =		(int)CNC_GetParameter(rdPtr);
+	int easeMode =	(int)CNC_GetParameter(rdPtr);
+	int funcA =		(int)CNC_GetParameter(rdPtr);
+	int funcB =		(int)CNC_GetParameter(rdPtr);
+	int x =			(int)CNC_GetParameter(rdPtr);
+	int y =			(int)CNC_GetParameter(rdPtr);
+	int timeMode =	(int)CNC_GetParameter(rdPtr);
+	int timespan =	(int)CNC_GetParameter(rdPtr);
+
+	LPRO object = LproFromFixed(rdPtr, fixed);
+	if(object == NULL)
+		return 0;
+
+	//Remove object if it exists
+	for(unsigned int i = 0; i < rdPtr->controlled.size(); i++)
+	{
+		MoveStruct moved = rdPtr->controlled[i];
+		if(moved.fixedValue == fixed)
+		{
+			rdPtr->controlled.erase( rdPtr->controlled.begin() + i );
+			break;
+		}
+	}
+	MoveStruct move;
+	move.startX = object->roHo.hoX;
+	move.startY = object->roHo.hoY;
+	move.fixedValue = fixed;
+	move.destX = x;
+	move.destY = y;
+	move.starttime = 0;
+	move.easingMode = easeMode;
+	move.functionA = funcA;
+	move.functionB = funcB;
+	move.timeMode = timeMode;
+	move.timespan = timespan;
+	move.eventloop_step = 0;
+	
+	if(move.timeMode == 0){
+		move.starttime = CurrentTime();
+	}
+	move.vars = rdPtr->easingVars;
+	rdPtr->controlled.push_back(move);
 	return 0;
 }
 
@@ -221,8 +258,6 @@ short WINAPI DLLExport act_StopObject(LPRDATA rdPtr, long param1, long param2)
 			return 0;
 		}
 	}
-
-
 	return 0;
 }
 
@@ -306,7 +341,6 @@ short WINAPI DLLExport act_SetOvershoot(LPRDATA rdPtr, long param1, long param2)
 
 short WINAPI DLLExport act_SetPeriod(LPRDATA rdPtr, long param1, long param2)
 {
-
 	long tmpf=CNC_GetFloatValue(rdPtr, 0 );
 	float value = *(float *)&tmpf;
 	rdPtr->easingVars.period = value;
@@ -567,6 +601,7 @@ short (WINAPI * ActionJumps[])(LPRDATA rdPtr, long param1, long param2) =
 			act_SetObjectAmplitude,
 			act_SetObjectOvershoot,
 			act_SetObjectPeriod,
+			act_MoveObjExplicit,
 			0
 			};
 
