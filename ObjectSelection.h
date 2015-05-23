@@ -32,7 +32,6 @@ private:
 
 	bool FilterQualifierObjects(LPRDATA rdPtr, short Oi, bool negate, bool (*filterFunction)(LPRDATA, LPRO));
 	bool FilterNonQualifierObjects(LPRDATA rdPtr, short Oi, bool negate, bool (*filterFunction)(LPRDATA, LPRO));
-	LPOIL GetOILFromOI(short Oi);
 
 };
 

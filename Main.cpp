@@ -132,9 +132,9 @@ long WINAPI DLLExport con_IsObjectMoving(LPRDATA rdPtr, long param1, long param2
 
 	PEVT pe = (PEVT)(((LPBYTE)param1)-CND_SIZE);
 	bool isNegated = (pe->evtFlags2 & EVFLAG2_NOT);
-	short oi = ((eventParam*)param1)->evp.evpW.evpW0;
+	short oil = ((eventParam*)param1)->evp.evpW.evpW0;
 
-	return select.FilterObjects(rdPtr, oi, isNegated, &filterMoving);
+	return select.FilterObjects(rdPtr, oil, isNegated, &filterMoving);
 }
 		
 
