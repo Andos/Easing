@@ -170,7 +170,8 @@ BEGIN
         MENUITEM "Object stopped moving?",      ID_SPECIFICOBJECTSTOPPED
         MENUITEM "Any object stopped moving?",  ID_ANYOBJECTSTOPPED
         MENUITEM "Is object moving?",           ID_ISOBJECTMOVING
-    END
+		MENUITEM "Is object paused?",           ID_ISOBJECTPAUSED
+		END
 END
 #endif
 
@@ -185,6 +186,10 @@ BEGIN
     BEGIN
         MENUITEM "Move object",                 ID_MOVEOBJ
         MENUITEM "Move object (nummeric parameters)", ID_MOVEOBJEXPLICIT
+        MENUITEM "Pause object",                ID_PAUSEOBJECT
+        MENUITEM "Pause all objects",           ID_PAUSEALLOBJECTS
+        MENUITEM "Resume object",                ID_RESUMEOBJECT
+        MENUITEM "Resume all objects",           ID_RESUMEALLOBJECTS
         MENUITEM "Stop object",                 ID_STOPOBJECT
         MENUITEM "Stop all objects",            ID_STOPALLOBJECTS
         MENUITEM "Reverse object",              ID_REVERSEOBJECT
@@ -345,6 +350,8 @@ BEGIN
     IDS_SETPERIOD_VAL       "Set period value (Default = 0.4)"
     IDS_FIXED_VAL           "fixed value"
     IDS_SELECTOBJECT        "Select obejct"
+    IDS_SELECTOBJECTTOPAUSE "Select object to pause"
+    IDS_SELECTOBJECTTORESUME "Select object to resume"
 END
 
 STRINGTABLE 
@@ -379,6 +386,11 @@ BEGIN
     IDS_FUNCTIONBNUMBER     "Second function: (0=Linear, 1=quadratic, 2=cubic, 3=quint, 4=sine, ... )"
     IDS_TIMEMODENUMBER      "Time mode (0=milliseconds, 1=event loops)"
     IDS_MOVEOBJEXPLICIT     "Move %0 using mode=%1 functionA=%2 functionB=%3 to [%4,%5] using time-mode %6 over %7 time units"
+	IDS_PAUSEOBJECT         "Pause %0"
+	IDS_PAUSEALLOBJECTS     "Pause all objects"
+	IDS_RESUMEOBJECT        "Resume %0"
+	IDS_RESUMEALLOBJECTS    "Resume all objects"
+	IDS_ISOBJECTPAUSED      "%o: Is %0 paused?"
 END
 
 #endif    // English (U.S.) resources

@@ -26,6 +26,7 @@ short conditionsInfos[]=
 		ID_ANYOBJECTSTOPPED,		IDS_ANYOBJECTSTOPPED,		CND_ANYOBJECTSTOPPED,		0,								0,
 		ID_SPECIFICOBJECTSTOPPED,	IDS_SPECIFICOBJECTSTOPPED,	CND_SPECIFICOBJECTSTOPPED,	0,								1, PARAM_OBJECT, IDS_SELECTOBJECTTOTEST,
 		ID_ISOBJECTMOVING,			IDS_ISOBJECTMOVING,			CND_ISOBJECTMOVING,			EVFLAGS_ALWAYS+EVFLAGS_NOTABLE, 1, PARAM_OBJECT, IDS_SELECTOBJECTTOTEST,
+		ID_ISOBJECTPAUSED,			IDS_ISOBJECTPAUSED,			CND_ISOBJECTPAUSED,			EVFLAGS_ALWAYS+EVFLAGS_NOTABLE, 1, PARAM_OBJECT, IDS_SELECTOBJECTTOTEST,
 	};
 
 // Definitions of parameters for each action
@@ -44,7 +45,12 @@ short actionsInfos[]=
 		ID_SETOBJECTPERIOD,		IDS_SETOBJECTPERIOD,		ACT_SETOBJECTPERIOD,		0, 2, PARAM_OBJECT,PARAM_EXPRESSION,	IDS_SELECTOBJECT, IDS_SETPERIOD_VAL,
 
 		ID_MOVEOBJEXPLICIT,		IDS_MOVEOBJEXPLICIT,		ACT_MOVEOBJEXPLICIT,		0, 8, PARAM_EXPRESSION,PARAM_EXPRESSION,PARAM_EXPRESSION,PARAM_EXPRESSION,PARAM_EXPRESSION,PARAM_EXPRESSION,PARAM_EXPRESSION,PARAM_EXPRESSION,		IDS_FIXEDOFOBJTOMOVE, IDS_EASINGMODENUMBER, IDS_FUNCTIONANUMBER, IDS_FUNCTIONBNUMBER, IDS_XCOORDINATE, IDS_YCOORDINATE, IDS_TIMEMODENUMBER, IDS_TIME, 
-	};
+
+		ID_PAUSEOBJECT,			IDS_PAUSEOBJECT,				ACT_PAUSEOBJECT,				0, 1, PARAM_OBJECT,	IDS_SELECTOBJECTTOPAUSE,
+		ID_PAUSEALLOBJECTS,		IDS_PAUSEALLOBJECTS,			ACT_PAUSEALLOBJECTS,			0, 0,
+		ID_RESUMEOBJECT,		IDS_RESUMEOBJECT,				ACT_RESUMEOBJECT,				0, 1, PARAM_OBJECT,	IDS_SELECTOBJECTTORESUME,
+		ID_RESUMEALLOBJECTS,	IDS_RESUMEALLOBJECTS,			ACT_RESUMEALLOBJECTS,			0, 0,
+};
 
 // Definitions of parameters for each expression
 short expressionsInfos[]=
@@ -130,13 +136,35 @@ long WINAPI DLLExport con_IsObjectMoving(LPRDATA rdPtr, long param1, long param2
 {
 	ObjectSelection select = ObjectSelection(rdPtr->rHo.hoAdRunHeader, rdPtr->isHwa, rdPtr->isUnicode);
 
-	PEVT pe = (PEVT)(((LPBYTE)param1)-CND_SIZE);
+	PEVT pe = (PEVT)(((LPBYTE)param1) - CND_SIZE);
 	bool isNegated = (pe->evtFlags2 & EVFLAG2_NOT);
 	short oil = ((eventParam*)param1)->evp.evpW.evpW0;
 
 	return select.FilterObjects(rdPtr, oil, isNegated, &filterMoving);
 }
-		
+
+bool filterPaused(LPRDATA rdPtr, LPRO object)
+{
+	for (unsigned int i = 0; i < rdPtr->controlled.size(); ++i)
+	{
+		MoveStruct & moved = rdPtr->controlled.at(i);
+		if (moved.fixedValue == FixedVal(object) && moved.pausecount != 0)
+			return true;
+	}
+	return false;
+}
+
+long WINAPI DLLExport con_IsObjectPaused(LPRDATA rdPtr, long param1, long param2)
+{
+	ObjectSelection select = ObjectSelection(rdPtr->rHo.hoAdRunHeader, rdPtr->isHwa, rdPtr->isUnicode);
+
+	PEVT pe = (PEVT)(((LPBYTE)param1) - CND_SIZE);
+	bool isNegated = (pe->evtFlags2 & EVFLAG2_NOT);
+	short oil = ((eventParam*)param1)->evp.evpW.evpW0;
+
+	return select.FilterObjects(rdPtr, oil, isNegated, &filterPaused);
+}
+
 
 // ============================================================================
 //
@@ -186,7 +214,9 @@ short WINAPI DLLExport act_MoveObj(LPRDATA rdPtr, long param1, long param2)
 	move.timeMode = time->type;
 	move.timespan = timespan;
 	move.eventloop_step = 0;
-	
+	move.pausetime = 0;
+	move.pausecount = 0;
+
 	if(move.timeMode == 0){
 		move.starttime = CurrentTime();
 	}
@@ -233,6 +263,8 @@ short WINAPI DLLExport act_MoveObjExplicit(LPRDATA rdPtr, long param1, long para
 	move.timeMode = timeMode;
 	move.timespan = timespan;
 	move.eventloop_step = 0;
+	move.pausetime = 0;
+	move.pausecount = 0;
 	
 	if(move.timeMode == 0){
 		move.starttime = CurrentTime();
@@ -266,6 +298,75 @@ short WINAPI DLLExport act_StopAllObjects(LPRDATA rdPtr, long param1, long param
 	rdPtr->controlled.clear();
 	return 0;
 }
+
+short WINAPI DLLExport act_PauseObject(LPRDATA rdPtr, long param1, long param2)
+{
+	LPRO object = (LPRO)param1;
+	int fixed = FixedVal(object);
+
+	for (unsigned int i = 0; i < rdPtr->controlled.size(); i++)
+	{
+		MoveStruct& moved = rdPtr->controlled[i];
+		if (moved.fixedValue == fixed)
+		{
+			if (moved.pausecount == 0 && moved.timeMode == 0)
+				moved.pausetime = CurrentTime();
+			moved.pausecount++;
+			break;
+		}
+	}
+	return 0;
+}
+
+short WINAPI DLLExport act_PauseAllObjects(LPRDATA rdPtr, long param1, long param2)
+{
+	for (unsigned int i = 0; i < rdPtr->controlled.size(); i++)
+	{
+		MoveStruct& moved = rdPtr->controlled[i];
+		if (moved.pausecount == 0 && moved.timeMode == 0)
+			moved.pausetime = CurrentTime();
+		moved.pausecount++;
+	}
+	return 0;
+}
+
+short WINAPI DLLExport act_ResumeObject(LPRDATA rdPtr, long param1, long param2)
+{
+	LPRO object = (LPRO)param1;
+	int fixed = FixedVal(object);
+
+	for (unsigned int i = 0; i < rdPtr->controlled.size(); i++)
+	{
+		MoveStruct& moved = rdPtr->controlled[i];
+		if (moved.fixedValue == fixed)
+		{
+			if (moved.pausecount != 0)
+			{
+				moved.pausecount--;
+				if (moved.pausecount == 0 && moved.timeMode == 0)
+					moved.starttime += CurrentTime() - moved.pausetime;
+			}
+			break;
+		}
+	}
+	return 0;
+}
+
+short WINAPI DLLExport act_ResumeAllObjects(LPRDATA rdPtr, long param1, long param2)
+{
+	for (unsigned int i = 0; i < rdPtr->controlled.size(); i++)
+	{
+		MoveStruct& moved = rdPtr->controlled[i];
+		if (moved.pausecount != 0)
+		{
+			moved.pausecount--;
+			if (moved.pausecount == 0 && moved.timeMode == 0)
+				moved.starttime += CurrentTime() - moved.pausetime;
+		}
+	}
+	return 0;
+}
+
 
 short WINAPI DLLExport act_ReverseObject(LPRDATA rdPtr, long param1, long param2)
 {
@@ -586,6 +687,7 @@ long (WINAPI * ConditionJumps[])(LPRDATA rdPtr, long param1, long param2) =
 			con_AnyObjectStopped,
 			con_SpecificObjectStopped,
 			con_IsObjectMoving,
+			con_IsObjectPaused,
 			0
 			};
 	
@@ -602,6 +704,10 @@ short (WINAPI * ActionJumps[])(LPRDATA rdPtr, long param1, long param2) =
 			act_SetObjectOvershoot,
 			act_SetObjectPeriod,
 			act_MoveObjExplicit,
+			act_PauseObject,
+			act_PauseAllObjects,
+			act_ResumeObject,
+			act_ResumeAllObjects,
 			0
 			};
 

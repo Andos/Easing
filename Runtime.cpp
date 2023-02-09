@@ -113,6 +113,8 @@ short WINAPI DLLExport HandleRunObject(LPRDATA rdPtr)
 
 		if( object != NULL )
 		{
+			if (moved.pausecount != 0)
+				continue;
 			if(moved.timeMode == 0)
 			{
 				__int64 currentTime = CurrentTime();
@@ -192,6 +194,9 @@ short WINAPI DLLExport DisplayRunObject(LPRDATA rdPtr)
 // 
 short WINAPI DLLExport PauseRunObject(LPRDATA rdPtr)
 {
+	extern short WINAPI DLLExport act_PauseAllObjects(LPRDATA rdPtr, long param1, long param2);
+	act_PauseAllObjects(rdPtr, 0, 0);
+
 	// Ok
 	return 0;
 }
@@ -204,6 +209,9 @@ short WINAPI DLLExport PauseRunObject(LPRDATA rdPtr)
 //
 short WINAPI DLLExport ContinueRunObject(LPRDATA rdPtr)
 {
+	extern short WINAPI DLLExport act_ResumeAllObjects(LPRDATA rdPtr, long param1, long param2);
+	act_ResumeAllObjects(rdPtr, 0, 0);
+
 	// Ok
 	return 0;
 }

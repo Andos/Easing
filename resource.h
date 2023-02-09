@@ -37,6 +37,8 @@
 #define IDS_SETPERIOD_VAL               5016
 #define IDS_FIXED_VAL                   5017
 #define IDS_SELECTOBJECT                5018
+#define IDS_SELECTOBJECTTOPAUSE         5019
+#define IDS_SELECTOBJECTTORESUME        5020
 #define IDS_MOVEOBJ                     6000
 #define IDS_STOPOBJECT                  6001
 #define IDS_STOPALLOBJECTS              6002
@@ -82,7 +84,11 @@
 
 #define IDS_MOVEOBJEXPLICIT				6041
 
-
+#define IDS_PAUSEOBJECT                 6042
+#define IDS_PAUSEALLOBJECTS             6043
+#define IDS_RESUMEOBJECT                6044
+#define IDS_RESUMEALLOBJECTS            6045
+#define IDS_ISOBJECTPAUSED              6046
 
 #define MN_ACTIONS                      20000
 #define MN_CONDITIONS                   20001
@@ -100,11 +106,16 @@
 #define ID_SETOBJECTOVERSHOOT           25080
 #define ID_SETOBJECTPERIOD              25090
 #define ID_MOVEOBJEXPLICIT              25100
+#define ID_PAUSEOBJECT                  25110
+#define ID_PAUSEALLOBJECTS              25120
+#define ID_RESUMEOBJECT                 25130
+#define ID_RESUMEALLOBJECTS             25140
 
 
 #define ID_ANYOBJECTSTOPPED             26000
 #define ID_SPECIFICOBJECTSTOPPED        26010
 #define ID_ISOBJECTMOVING               26020
+#define ID_ISOBJECTPAUSED               26030
 #define ID_GETNUMCONTROLLED             27000
 #define ID_GETSTOPPEDFIXED              27001
 #define ID_CALCULATE_EASEIN             27002

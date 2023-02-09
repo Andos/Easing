@@ -12,8 +12,9 @@ using namespace std;
 #define	CND_ANYOBJECTSTOPPED			0
 #define CND_SPECIFICOBJECTSTOPPED		1
 #define CND_ISOBJECTMOVING              2
+#define CND_ISOBJECTPAUSED              3
 
-#define	CND_LAST						3
+#define	CND_LAST						4
 
 // ---------------------------
 // DEFINITION OF ACTIONS CODES
@@ -31,7 +32,12 @@ using namespace std;
 #define ACT_SETOBJECTPERIOD             9
 #define ACT_MOVEOBJEXPLICIT				10
 
-#define	ACT_LAST						11
+#define ACT_PAUSEOBJECT					11
+#define ACT_PAUSEALLOBJECTS				12
+#define ACT_RESUMEOBJECT				13
+#define ACT_RESUMEALLOBJECTS			14
+
+#define	ACT_LAST						15
 
 // -------------------------------
 // DEFINITION OF EXPRESSIONS CODES
@@ -109,8 +115,10 @@ struct MoveStruct
 
 	unsigned char	timeMode;
 	__int64			starttime;
+	__int64			pausetime;
 	int				timespan;
 	int				eventloop_step;
+	int				pausecount;
 };
 
 

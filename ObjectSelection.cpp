@@ -8,7 +8,7 @@ ObjectSelection::ObjectSelection(LPRH rhPtr, bool isHwa, bool isUnicode)
 	this->OiList = rhPtr->rhOiList;				//get a pointer to the mmf object info list
 	this->QualToOiList = rhPtr->rhQualToOiList;	//get a pointer to the mmf qualifier to Oi list
 
-	oiListItemSize = sizeof(objInfoList);
+	oiListItemSize = offsetof(objInfoList, oilName) + 24 + sizeof(int); // sizeof(objInfoList); => using offsetof to make it compatible with both 2.0 and 2.5 SDKs
 	if(isUnicode)
 		oiListItemSize += 24;
 	if(isHwa)
